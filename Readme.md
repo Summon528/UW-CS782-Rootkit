@@ -2,7 +2,6 @@
 A example keylogger root kit
 
 ## Run
----
 Change the attacker's IP in `rk_define.h`
 
 ### Normal Version
@@ -30,15 +29,15 @@ sudo make unload
 ---
 ### Hidden Version
 This version will hide the module from `lsmod`, hide the TCP connection from `netstat` and hide `rootkit.ko`, `rootkit.conf` from being `ls`
-### Build
+#### Build
 ```
 make hidden
 ```
-### Load
+#### Load
 ```
 sudo make load
 ```
-### Unload
+#### Unload
 You will have to reboot the computer
 #### To make the module survive reboot
 ```
