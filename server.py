@@ -12,4 +12,4 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 if __name__ == "__main__":
     socketserver.ThreadingTCPServer.allow_reuse_address = True
     with socketserver.ThreadingTCPServer((HOST, PORT), MyTCPHandler) as server:
-        server.serve_forever()u
+        server.serve_forever()
