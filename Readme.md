@@ -2,9 +2,10 @@
 A example keylogger rootkit
 
 ## Run
-Serve the serve directory somewhere the victim has access to
-Make sure to update the domain name in `serve/linux_supercharger.html` accordingly
-Change the attacker's IP in `rk_define.h`
+Serve the serve directory somewhere the victim has access to  
+Make sure to update the domain name in `serve/linux_supercharger.html` accordingly (Use /etc/hosts to hardcode a domain name for an attacker host OS with a bridged connection to the victim guest OS)  
+Change the attacker's IP in `rk_define.h`  
+Running the script in `serve/linux_supercharger.html` will take care of the rest
 
 ### Normal Version
 #### Build
