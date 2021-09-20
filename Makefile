@@ -1,6 +1,8 @@
 modname := rootkit
 obj-m += $(modname).o
 
+.SILENT:
+
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
@@ -11,11 +13,11 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 
 load:
-	-rmmod $(modname)
+	-rmmod $(modname) 2>/dev/null
 	insmod $(modname).ko
 
 unload:
-	-rmmod $(modname)
+	-rmmod $(modname) 2>/dev/null
 
 install:
 	cp $(modname).ko /lib/modules/$(shell uname -r)/kernel/drivers/
