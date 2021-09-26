@@ -1,5 +1,5 @@
 # Rootkit
-A example keylogger rootkit
+An example keylogger rootkit
 
 ## Run
 * Serve the serve directory somewhere the victim has access to  
